@@ -7,8 +7,6 @@ use Web::Scraper::LibXML;
 use URI;
 
 
-__PACKAGE__->mk_accessors($_) for qw(_xml);
-
 sub new {
     my $class = shift;
     my $self  = $class->SUPER::new(@_);
@@ -56,11 +54,6 @@ sub raw_data {
         return { Error => { Message => $@} } if $@;
 
         return $result;
-
-        # my $req = HTTP::Request->new( GET => $url );
-        # my $res = $self->{user_agent}->request($req);
-        # my $xml = XML::LibXML::Simple::XMLin( $res->content, keepRoot => 1, );
-        # $self->_xml($xml);
     }
 }
 
