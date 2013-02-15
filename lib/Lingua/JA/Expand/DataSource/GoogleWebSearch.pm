@@ -4,6 +4,7 @@ use warnings;
 use base qw(Lingua::JA::Expand::DataSource);
 use Carp;
 use Web::Scraper::LibXML;
+# use Web::Scraper;
 use URI;
 
 
@@ -59,9 +60,11 @@ sub raw_data {
 
 sub _prepare {
     my $self                 = shift;
+    my $num = $self->config->{result_set_size} || 20;
     $self->{url}
             = 'http://www.google.co.jp/search?'
-            . 'num=20&as_qdr=all&as_occt=any&lr=lang_ja&safe=off'
+            . 'num=' . $num
+            . '&as_qdr=all&as_occt=any&lr=lang_ja&safe=off'
             . '&q=';
 }
 
@@ -78,6 +81,7 @@ Lingua::JA::Expand::DataSource::GoogleWebSearch - DataSource depend on Google We
   use Lingua::JA::Expand::DataSource::GoogleWebSearch;
 
   my %conf = (
+    result_set_size => 20   # default 20
   );
   my $datasource = Lingua::JA::Expand::DataSource::GoogleWebSearch->new(\%conf);
   my $text_ref   = $datasource->extract_text(\$word);
