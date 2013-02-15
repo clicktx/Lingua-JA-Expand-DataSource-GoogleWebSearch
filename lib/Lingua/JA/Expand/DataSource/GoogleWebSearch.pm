@@ -83,7 +83,7 @@ Lingua::JA::Expand::DataSource::GoogleWebSearch - DataSource depend on Google We
   my %conf = (
     result_set_size => 20   # default 20
   );
-  my $datasource = Lingua::JA::Expand::DataSource::GoogleWebSearch->new(\%conf);
+  my $datasource = Lingua::JA::Expand::DataSource::GoogleWebSearch->new(%conf);
   my $text_ref   = $datasource->extract_text(\$word);
 
 =head1 DESCRIPTION
